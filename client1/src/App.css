@@ -1,0 +1,287 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Align children vertically */
+  align-items: center; /* Center children horizontally */
+  height: 100vh; /* Full viewport height */
+  justify-content: flex-start; /* Start from the top */
+  color: rgb(39, 39, 39);
+  position: relative;
+}
+
+.sidemenu {
+  width: 260px;
+  padding: 10px;
+  background-color: #202123;
+}
+
+.side-menu-button {
+  padding: 12px;
+  border: 1px solid rgb(39, 37, 37);
+  border-radius: 5px;
+  text-align: left;
+  transition:ease 0.25s all;
+}
+
+.side-menu-button:hover {
+  background-color: rgba(64, 62, 62, 0.1);
+}
+
+.side-menu-button span{
+  padding-left: 6px;
+  padding-right: 12px;
+}
+
+.chatbox {
+  width: 100%; /* Take full width */
+  max-width: 640px; 
+  margin-top: 20px; /* Or any space you want from the top */
+  /* rest of your styles */
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin 
+    infinite 20s linear;
+  }
+}
+
+.chat-input-holder {
+  background: white;
+  padding: 1rem; /* Match padding for visual alignment */
+  position: absolute; /* Stick to the bottom of chat-card */
+  bottom: 0;
+  left: 0;
+  right: 0; /* Ensures full width */
+}
+
+.chat-input-textarea {
+  width: calc(50% - 20px); 
+  padding: 12px;
+  background-color: #dde0ef;
+  
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 8px 0 rgba(30, 2, 66, 0.25);
+  resize: none; /* Allow only vertical resizing */
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+
+
+.App-link {
+  color: #61dafb;
+}
+
+
+.new-chat-button {
+  position: absolute; /* Positioning the button absolutely relative to its positioned parent */
+  bottom: 20px; 
+  left: 20px; 
+}
+
+.chat-message.chatgpt {
+  background-color: #848586;
+}
+
+.chat-message-center {
+  max-width: 940px;
+  margin-left:auto;
+  margin-right:auto;
+  display: flex;
+  padding: 12px;
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: #ebebee;
+  display: flex;
+  align-items: center;
+
+}
+
+.avatar{
+  background:rgb(71, 71, 71);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 1px;
+  flex-shrink: 0;
+}
+
+.avatar.chatgpt{
+  background:#7168b9;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 1px;
+}
+
+.message{
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.chat-card {
+  
+  max-width: 750px;
+  width: 100%;
+  overflow-y: auto; /* Ensure this property is set correctly */
+  max-height: 500px; /* Adjust the max-height as needed for your design */
+  position: relative;
+}
+
+.chat-log {
+  padding: 0.5rem;
+  overflow-y: auto; /* This ensures the chat log itself is scrollable */
+  max-height: 500px; /* This might need adjustment based on your layout */
+}
+
+
+/* Examples Button */
+.examples-button {
+  position: absolute; /* Positioning the button absolutely relative to its positioned parent */
+  bottom: 80px; 
+  left: 50px;
+  padding: 12px;
+  border: none;
+  border-radius: 20px; /* Gives the pill shape */
+  background-color: #4d4d4d; /* Example blue, matches your App-link color for consistency */
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: ease 0.25s all;
+}
+
+.examples-button:hover {
+  background-color: #a5a7b0; 
+}
+
+
+/* Example Cards */
+.example-card {
+  background: #dde0ef; /* Matches your chat input for consistency */
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none; /* Optional: Adds a clean look without borders */
+  overflow: auto; /* Allows scrolling */
+  white-space: nowrap;
+  overflow-y: auto; /* Allows vertical scrolling */
+  max-height: 500px;
+}
+
+/* Examples Container */
+.examples-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(7, 7, 7, 0.5); /* Semi-transparent black */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10; /* Ensure it's above other content */
+}
+
+/* Examples Content */
+.examples-content {
+  position: relative; /* Added to position the close button absolutely within this container */
+  width: 90%;
+  max-width: 640px; /* Matches your .chatbox for consistency */
+  background: white;
+  padding: 7px;
+  border-radius: 10px;
+  overflow-y: auto; /* Allows scrolling within the container */
+  box-shadow: 0 0 8px 0 rgba(91, 60, 152, 0.25); /* Matches your input shadow for consistent styling */
+}
+
+/* Close Button */
+.examples-close {
+  position: absolute;
+  top: 0px; /* Adjusted for alignment */
+  right: 0px; /* Adjusted for alignment */
+  font-size: 24px;
+  color: purple; /* As specified */
+  cursor: pointer;
+  padding: 10px; /* Provides space around the 'x' for easier clicking */
+  transition: ease 1s all;
+}
+
+.examples-close:hover {
+  color: #9b4dca; /* Lighter purple on hover for visual feedback */
+}
+
+
+.new-button {
+  padding: 12px 30px; 
+  border: none;
+  border-radius: 20px; /* Pill shape */
+  background-color: #505050; 
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: ease 0.25s all;
+  position: absolute; /* Positioning the button absolutely relative to its positioned parent */
+  bottom: 30px; 
+  left: 50px; 
+}
+
+.new-button:hover {
+  background-color: #676767;  
+}
+
+/* Add a new class for the images inside example cards */
+.example-card img {
+  max-width: 100%; /* Ensure it doesn't overflow the card */
+  max-height: 100%; /* Ditto for height */
+  object-fit: cover; /* This will cover the area without stretching the image */
+}
+
+.example-card img {
+  display: block; /* Images are block level to allow scrolling */
+  width: auto; /* Width can be auto if you want the original width of the image */
+  height: auto; /* Height can be auto to maintain aspect ratio */
+  max-width: none; /* Override any max-width set previously */
+}
+
+.example-card img {
+  height: 100%; /* This will scale the height to the container's height */
+  width: auto; /* Allows the width to be as wide as the image naturally is */
+  width: 100%; /* This will scale the width to the container's width */
+  height: auto;
+}
+
+:root {
+  --header-height: 60px; /* Example height, adjust accordingly */
+  
+}
+
+/* Position the examples container below the header */
+.examples-container {
+  top: var(--header-height);
+  bottom: 0; /* This will stretch the container to the bottom of the viewport */
+  overflow-y: auto; /* Allows vertical scrolling */
+}
+
+/* Set the examples content to take the remaining height */
+.examples-content {
+  height: calc(85% - var(--header-height));
+  overflow-y: auto; /* Make just the content scrollable if that's what you want */
+}
