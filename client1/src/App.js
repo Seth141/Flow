@@ -3,24 +3,15 @@ import './normal.css';
 import './App.css';
 import Header from './components/Header';
 import { Helmet } from 'react-helmet';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-// import 'prismjs/components/prism-javascript';
-// import 'prismjs/components/prism-css';
-// import 'prismjs/components/prism-markup';
-// import 'prismjs/components/prism-python';
-// import './prism.css';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-python';
+import './prism.css';
 import exampleImage0 from './example-0.png';
 import exampleImage1 from './example-1.png';
 import exampleImage2 from './example-2.png';
-
-
-const CodeBlock = ({ language, codeString }) => {
-  return (
-    <SyntaxHighlighter language={language}>
-      {codeString}
-    </SyntaxHighlighter>
-  );
-};
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -165,25 +156,25 @@ function App() {
 }
 
 function ChatMessage({ message }) {
-  // useEffect(() => {
-  //   if (message.user === "gpt" && message.content.startsWith("```")) {
-  //     Prism.highlightAll();
-  //   }
-  // }, [message]);
+  useEffect(() => {
+    if (message.user === "gpt" && message.content.startsWith("```")) {
+      Prism.highlightAll();
+    }
+  }, [message]);
 
-  // const messageIsCode = message.user === "gpt" && message.content.startsWith("```");
-  const formattedContent =  formatCode(message.content)
-  console.log("kong");
+  const messageIsCode = message.user === "gpt" && message.content.startsWith("```");
+  const formattedContent = messageIsCode ? formatCode(message.content) : message.content;
+
   return (
     <div className={`chat-message glass ${message.user === "gpt" ? "chatgpt" : ""}`}>
       <div className="chat-message-center glass">
         <div className={`avatar ${message.user === "gpt" ? "chatgpt" : ""}`}></div>
         <div className="message">
-        {
-          <div>{formattedContent}</div>
-            
-          }
-       
+          {messageIsCode ? (
+            <pre className="language-"><code dangerouslySetInnerHTML={{ __html: formattedContent }} /></pre>
+          ) : (
+            <div>{message.content}</div>
+          )}
         </div>
       </div>
     </div>
@@ -191,32 +182,16 @@ function ChatMessage({ message }) {
 }
 
 function formatCode(content) {
-  // const languageRegex = /```(\w+)\s([\s\S]*?)```/;
-  // const matches = content.match(languageRegex);
-  // if (matches && matches[1] && matches[2]) {
-    // const language = matches[1].toLowerCase();
-    // const code = matches[2];
-    // if (Prism.languages[language]) {
-    //   return Prism.highlight(code, Prism.languages[language], language);
-    // }
-  // }
-  // return content;
-  const parts = content.split(/(```[\w]*\n[\s\S]*?\n```)/g);
-  return parts.map((part, index) => {
-    if (part.startsWith("```")) {
-      const codeBlock = part.match(/```(\w+)?\n([\s\S]+)\n```/);
-      console.log("test codeblock", codeBlock)
-      if (codeBlock) {
-        const language = codeBlock[1] || 'python'; // Default to 'text' if no language is specified
-        const codeString = codeBlock[2];
-        console.log("hello world 1");
-        console.log(codeBlock);
-        return <CodeBlock language="python" codeString={codeString} />;
-      }
+  const languageRegex = /```(\w+)\s([\s\S]*?)```/;
+  const matches = content.match(languageRegex);
+  if (matches && matches[1] && matches[2]) {
+    const language = matches[1].toLowerCase();
+    const code = matches[2];
+    if (Prism.languages[language]) {
+      return Prism.highlight(code, Prism.languages[language], language);
     }
-    return <span key={index}>{part}</span>; // Return plain text if not a code block
-  });
-
+  }
+  return content;
 }
 
 export default App;
