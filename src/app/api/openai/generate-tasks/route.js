@@ -30,7 +30,7 @@ export async function POST(request) {
                             "title": "Set up database",
                             "description": "Configure and initialize the PostgreSQL database",
                             "urgency": "high",
-                            "status": "Backlog",
+                            "status": "open",
                             "storyPoints": "4"
                         }
                         ]

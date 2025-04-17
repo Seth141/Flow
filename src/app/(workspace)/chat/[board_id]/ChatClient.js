@@ -91,7 +91,7 @@ export default function ChatClient({ board_id, boardName }) {
         .from('cards')
         .insert({
           title: task.title,
-          description: `${task.description || ''}\n\nUrgency: ${task.urgency}\nStory Points: ${task.storyPoints}`,
+          description: `${task.description || ''}`,
           column_id: columnId,
           board_id: board_id,
           position: position,
@@ -154,6 +154,11 @@ export default function ChatClient({ board_id, boardName }) {
             } catch (taskError) {
               console.error('Failed to create task:', task.title, taskError);
             }
+          }
+
+          // open board in new tab (testing for now until chat integration into the board)
+          if (createdCount > 0) {
+            window.open(`/board/${board_id}`, '_blank');
           }
         } else {
           console.error('No tasks were generated');
