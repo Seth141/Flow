@@ -5,6 +5,7 @@ import './ChatInterface.css';
 import { IoSend, IoRefresh } from 'react-icons/io5';
 import { createClient } from '@/utils/supabase/client';
 import { generateTasks, getChatResponse } from '@/utils/gpt/gptService';
+import GenerateMessage from '@/components/GenerateMessage';
 
 export default function ChatClient({ board_id, boardName }) {
   const supabase = createClient();
@@ -170,6 +171,7 @@ export default function ChatClient({ board_id, boardName }) {
           {
             text: `I've generated and added ${createdCount} tasks to your board "${boardName || board_id}".`,
             sender: 'bot',
+            boardLink: `/board/${board_id}`,
           },
         ]);
       } else {
@@ -212,11 +214,19 @@ export default function ChatClient({ board_id, boardName }) {
           <h2>Chat: {boardName || `Project ${board_id.substr(0, 8)}`}</h2>
         </div>
         <div className="chat-log" ref={chatLogRef}>
-          {messages.map((message, index) => (
-            <div key={index} className={`message ${message.sender}`}>
-              {message.text}
-            </div>
-          ))}
+          {messages.map((message, index) =>
+            message.sender === 'bot' && message.boardLink ? (
+              <GenerateMessage
+                key={index}
+                text={message.text}
+                boardLink={message.boardLink}
+              />
+            ) : (
+              <div key={index} className={`message ${message.sender}`}>
+                {message.text}
+              </div>
+            )
+          )}
           {isThinking && (
             <div className="message bot thinking-indicator">
               <span className="dot"></span>

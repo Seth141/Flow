@@ -32,13 +32,18 @@ export function CreateBoardCard({ workspaceId }) {
     setError(null);
 
     try {
-      await board.createBoard({
+      const result = await board.createBoard({
         title,
         background: selectedColor,
         workspace_id: workspaceId,
       });
-      setShowModal(false);
-      router.refresh(); // refresh the page to show the new board
+      if (result.data && result.data[0]) {
+        // navigate to chat after board creation
+        router.push(`/chat/${result.data[0].id}`);
+      } else {
+        // fallback to refresh the page 
+        router.refresh();
+      }
     } catch (error) {
       setError(error.message || 'Failed to create board');
     } finally {
