@@ -74,6 +74,9 @@ function LandingPage() {
           >
             Login
           </a>
+          <Link href="/pricing" onClick={toggleMenu}>
+            Pricing
+          </Link>
           <a href="#about" onClick={toggleMenu}>
             About
           </a>
@@ -113,6 +116,94 @@ function LandingPage() {
           </div>
         </div>
       </div>
+
+      {/* How Flow Works Section */}
+      <section className="how-flow-works">
+        <div className="container">
+          <h2 className="section-title">How Flow Works</h2>
+          <div className="steps-container">
+            <div className="step">
+              <div className="step-number">1</div>
+              <h3>Describe Your Project</h3>
+              <p>Simply describe your project requirements and goals in natural language.</p>
+            </div>
+            <div className="step">
+              <div className="step-number">2</div>
+              <h3>AI Task Generation</h3>
+              <p>Our AI analyzes your project and breaks it down into organized, actionable tasks.</p>
+            </div>
+            <div className="step">
+              <div className="step-number">3</div>
+              <h3>Intelligent Organization</h3>
+              <p>Tasks are automatically categorized and prioritized in your Kanban board.</p>
+            </div>
+            <div className="step">
+              <div className="step-number">4</div>
+              <h3>Track & Optimize</h3>
+              <p>Monitor progress, collaborate with your team, and optimize your workflow.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Task Generation Demo */}
+      <section className="ai-demo-section">
+        <div className="container">
+          <h2 className="section-title">AI Task Generation</h2>
+          <p className="section-subtitle">Flow's AI breaks down your project into organized, actionable tasks.</p>
+          <div className="task-examples">
+            <div className="task-example">
+              <div className="task-icon">📊</div>
+              <div className="task-content">
+                <h4>Set up product database schema</h4>
+                <p>Design and implement the database structure for your product catalog</p>
+              </div>
+            </div>
+            <div className="task-example">
+              <div className="task-icon">🛍️</div>
+              <div className="task-content">
+                <h4>Create product listing component</h4>
+                <p>Build responsive product cards with search and filter functionality</p>
+              </div>
+            </div>
+            <div className="task-example">
+              <div className="task-icon">🛒</div>
+              <div className="task-content">
+                <h4>Implement shopping cart functionality</h4>
+                <p>Add cart management, quantity updates, and checkout flow</p>
+              </div>
+            </div>
+            <div className="task-example">
+              <div className="task-icon">💳</div>
+              <div className="task-content">
+                <h4>Set up payment gateway integration</h4>
+                <p>Integrate secure payment processing with Stripe or PayPal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Flow Advantage */}
+      <section className="flow-advantage">
+        <div className="container">
+          <h2 className="section-title">The Flow Advantage</h2>
+          <div className="stats-container">
+            <div className="stat">
+              <div className="stat-number">40%</div>
+              <div className="stat-label">Time Saved in Planning</div>
+            </div>
+            <div className="stat">
+              <div className="stat-number">30%</div>
+              <div className="stat-label">Faster Project Completion</div>
+            </div>
+            <div className="stat">
+              <div className="stat-number">$15K</div>
+              <div className="stat-label">Average Monthly Savings</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <InteractiveDemo />
 
@@ -206,6 +297,76 @@ function LandingPage() {
           </p>
         </div>
       </div>
+
+      {/* Comprehensive Features Section */}
+      <section className="comprehensive-features">
+        <div className="container">
+          <h2 className="section-title">Everything You Need to Succeed</h2>
+          <div className="features-grid">
+            <div className="feature-category">
+              <h3>🤖 AI-Powered Features</h3>
+              <ul>
+                <li>Natural language project description</li>
+                <li>Automatic task breakdown and generation</li>
+                <li>Intelligent task categorization</li>
+                <li>Smart priority management</li>
+                <li>AI-driven workflow optimization</li>
+              </ul>
+            </div>
+            <div className="feature-category">
+              <h3>📋 Task Management</h3>
+              <ul>
+                <li>Intuitive Kanban board interface</li>
+                <li>Drag-and-drop task organization</li>
+                <li>Custom task statuses and workflows</li>
+                <li>Task dependencies and relationships</li>
+                <li>Bulk task operations</li>
+              </ul>
+            </div>
+            <div className="feature-category">
+              <h3>👥 Team Collaboration</h3>
+              <ul>
+                <li>Real-time team collaboration</li>
+                <li>Task assignment and ownership</li>
+                <li>Team member activity tracking</li>
+                <li>Comment and discussion threads</li>
+                <li>Role-based permissions</li>
+              </ul>
+            </div>
+            <div className="feature-category">
+              <h3>📊 Analytics & Reporting</h3>
+              <ul>
+                <li>Project progress visualization</li>
+                <li>Team performance metrics</li>
+                <li>Time tracking and estimates</li>
+                <li>Burndown charts and velocity</li>
+                <li>Custom report generation</li>
+              </ul>
+            </div>
+            <div className="feature-category">
+              <h3>🔗 Integrations</h3>
+              <ul>
+                <li>GitHub and GitLab integration</li>
+                <li>Slack and Microsoft Teams</li>
+                <li>Jira and Linear import</li>
+                <li>Calendar and scheduling tools</li>
+                <li>API for custom integrations</li>
+              </ul>
+            </div>
+            <div className="feature-category">
+              <h3>⚡ Performance & Security</h3>
+              <ul>
+                <li>Lightning-fast task generation</li>
+                <li>Enterprise-grade security</li>
+                <li>Data encryption at rest and in transit</li>
+                <li>Regular automated backups</li>
+                <li>99.9% uptime guarantee</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

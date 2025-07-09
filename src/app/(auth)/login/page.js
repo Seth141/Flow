@@ -1,7 +1,14 @@
+'use client';
+
 import { login } from '@/actions/authentication';
 import Link from 'next/link';
+import { useActionState } from 'react';
+
+const initialState = { error: null };
 
 export default function Login() {
+  const [state, formAction] = useActionState(login, initialState);
+
   return (
     <div className="bg-white/20 backdrop-blur-sm text-gray-200 border-white rounded-lg shadow-lg flex flex-col">
       <div className="flex flex-col space-y-1.5 p-6">
@@ -12,8 +19,13 @@ export default function Login() {
       </div>
 
       <div className="p-6 pt-0">
-        <form action={login}>
+        <form action={formAction}>
           <div className="flex flex-col gap-6">
+            {state.error && (
+              <div className="text-red-500 text-sm bg-red-100 p-2 rounded">
+                {state.error}
+              </div>
+            )}
             <div className="grid gap-2">
               <label htmlFor="email">Email</label>
               <input

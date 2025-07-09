@@ -1,19 +1,36 @@
+'use client';
+
 import { register } from '@/actions/authentication';
 import Link from 'next/link';
+import { useActionState } from 'react';
 
-export default function Login() {
+const initialState = { error: null, success: null };
+
+export default function Register() {
+  const [state, formAction] = useActionState(register, initialState);
+
   return (
     <div className="bg-white/20 backdrop-blur-sm text-gray-200 border-white rounded-lg shadow-lg flex flex-col">
       <div className="flex flex-col space-y-1.5 p-6">
-        <div className="text-2xl tracking-tight font-semibold">Log in</div>
+        <div className="text-2xl tracking-tight font-semibold">Sign up</div>
         <div className="text-sm text-muted-foreground">
-          Enter your email below to login to your account
+          Create your account to get started
         </div>
       </div>
 
       <div className="p-6 pt-0">
-        <form action={register}>
+        <form action={formAction}>
           <div className="flex flex-col gap-6">
+            {state.error && (
+              <div className="text-red-500 text-sm bg-red-100 p-2 rounded">
+                {state.error}
+              </div>
+            )}
+            {state.success && (
+              <div className="text-green-500 text-sm bg-green-100 p-2 rounded">
+                {state.success}
+              </div>
+            )}
             {/* Name */}
             <div className="grid gap-2">
               <label htmlFor="name">Name</label>

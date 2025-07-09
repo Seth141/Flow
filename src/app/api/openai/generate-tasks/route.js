@@ -1,12 +1,43 @@
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
+// Check if OpenAI is properly configured
+const isOpenAIConfigured = process.env.NEXT_PUBLIC_OPENAI_API_KEY && process.env.NEXT_PUBLIC_OPENAI_API_KEY !== 'your_openai_api_key_here';
+const openai = isOpenAIConfigured ? new OpenAI({
   apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-});
+}) : null;
 
 export async function POST(request) {
   try {
+    // If OpenAI is not configured, return a placeholder response
+    if (!isOpenAIConfigured) {
+      console.warn('OpenAI is not configured. Please set NEXT_PUBLIC_OPENAI_API_KEY in your environment variables.');
+      return NextResponse.json(
+        { 
+          error: 'AI task generation is not configured. Please contact support.',
+          tasks: [
+            {
+              id: 'placeholder-1',
+              title: 'Configure AI Integration',
+              description: 'Set up OpenAI API key to enable AI-powered task generation',
+              status: 'Backlog',
+              urgency: 'medium',
+              storyPoints: '2'
+            },
+            {
+              id: 'placeholder-2', 
+              title: 'Review Project Requirements',
+              description: 'Analyze project scope and define key deliverables',
+              status: 'Backlog',
+              urgency: 'high',
+              storyPoints: '3'
+            }
+          ]
+        },
+        { status: 503 }
+      );
+    }
+
     const { description, existingTasks = [] } = await request.json();
 
     if (!description) {

@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 
-export async function register(formData) {
+export async function register(prevState, formData) {
   const email = formData.get('email');
   const password = formData.get('password');
   const name = formData.get('name');

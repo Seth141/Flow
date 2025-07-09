@@ -1,17 +1,23 @@
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
+// Check if OpenAI is properly configured
+const isOpenAIConfigured = process.env.NEXT_PUBLIC_OPENAI_API_KEY && process.env.NEXT_PUBLIC_OPENAI_API_KEY !== 'your_openai_api_key_here';
+const openai = isOpenAIConfigured ? new OpenAI({
   apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-});
+}) : null;
 
 export async function POST(request) {
   try {
-    if (!process.env.NEXT_PUBLIC_OPENAI_API_KEY) {
-      console.error('OPENAI_API_KEY is not set in environment variables');
+    // If OpenAI is not configured, return a placeholder response
+    if (!isOpenAIConfigured) {
+      console.warn('OpenAI is not configured. Please set NEXT_PUBLIC_OPENAI_API_KEY in your environment variables.');
       return NextResponse.json(
-        { error: 'OpenAI API key is not configured' },
-        { status: 500 }
+        { 
+          error: 'AI chat is not configured. Please contact support.',
+          reply: 'I apologize, but AI chat functionality is not currently available. Please contact support to enable this feature.'
+        },
+        { status: 503 }
       );
     }
 
